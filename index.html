@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Swiper</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: 'Arial Black', Arial, sans-serif;
+            overflow-x: hidden;
+            user-select: none;
+            padding: 200px;
+        }
+
+        .swiper-section {
+            width: 100%;
+            padding: 80px 0 70px;
+        }
+
+        .swiper-outer {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .swiper {
+            width: 100%;
+            overflow: visible !important;
+        }
+
+        .swiper-wrapper {
+            align-items: center !important;
+        }
+
+        .swiper-slide {
+            position: relative;
+            flex-shrink: 0 !important;
+            height: 580px;
+            will-change: transform, opacity;
+            cursor: grab;
+            z-index: 1;
+        }
+
+        .swiper-slide:active {
+            cursor: grabbing;
+        }
+
+        .card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom,
+                    transparent 30%,
+                    rgba(0, 0, 0, 0.05) 55%,
+                    rgba(0, 0, 0, 0.76) 100%);
+            pointer-events: none;
+        }
+
+        .play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            width: 52px;
+            height: 52px;
+            background: #FFD000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(255, 208, 0, 0.5);
+            pointer-events: none;
+        }
+
+        .play-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: #111;
+            margin-left: 3px;
+        }
+
+        .card-title {
+            position: absolute;
+            bottom: 16px;
+            left: 14px;
+            right: 14px;
+            z-index: 10;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 900;
+            line-height: 1.35;
+            font-family: 'Arial Black', Arial, sans-serif;
+            text-shadow: 0 1px 6px rgba(0, 0, 0, 0.55);
+            pointer-events: none;
+        }
+
+        .card-title .hl {
+            color: #FFD000;
+        }
+
+        /* ── PAGINATION ── */
+        .swiper-pagination {
+            position: relative !important;
+            bottom: auto !important;
+            margin-top: 28px;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .swiper-pagination-bullet {
+            width: 8px;
+            height: 8px;
+            background: #9de8c3;
+            opacity: 1;
+            border-radius: 50%;
+            margin: 0 !important;
+            flex-shrink: 0;
+            transition: width 0.35s cubic-bezier(.4, 0, .2, 1),
+                border-radius 0.35s cubic-bezier(.4, 0, .2, 1),
+                background 0.35s ease;
+        }
+
+        .swiper-pagination-bullet-active {
+            width: 28px;
+            border-radius: 4px;
+            background: #1a5c3f;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="swiper-section">
+        <div class="swiper-outer">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <img src="https://picsum.photos/seed/ind1/400/700" alt="" />
+                            <div class="play-btn"><svg viewBox="0 0 24 24">
+                                    <polygon points="5,3 19,12 5,21" />
+                                </svg></div>
+                            <div class="card-title">International Students<br>Try <span class="hl">Indian Food</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <img src="https://picsum.photos/seed/amr2/400/700" alt="" />
+                            <div class="play-btn"><svg viewBox="0 0 24 24">
+                                    <polygon points="5,3 19,12 5,21" />
+                                </svg></div>
+                            <div class="card-title">Cultural Immersion:<br>The Many Colors of <span
+                                    class="hl">Amritsar</span></div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <img src="https://picsum.photos/seed/fly3/400/700" alt="" />
+                            <div class="play-btn"><svg viewBox="0 0 24 24">
+                                    <polygon points="5,3 19,12 5,21" />
+                                </svg></div>
+                            <div class="card-title">How Emirates Changed<br>Flying <span class="hl">Forever</span></div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <img src="https://picsum.photos/seed/git4/400/700" alt="" />
+                            <div class="play-btn"><svg viewBox="0 0 24 24">
+                                    <polygon points="5,3 19,12 5,21" />
+                                </svg></div>
+                            <div class="card-title">Tetr Tribe @<br><span class="hl">GITEX 2024</span> Dubai</div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <img src="https://picsum.photos/seed/niv5/400/700" alt="" />
+                            <div class="play-btn"><svg viewBox="0 0 24 24">
+                                    <polygon points="5,3 19,12 5,21" />
+                                </svg></div>
+                            <div class="card-title">How Nivia became the<br><span class="hl">face of sports</span> in
+                                India</div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <img src="https://picsum.photos/seed/dub6/400/700" alt="" />
+                            <div class="play-btn"><svg viewBox="0 0 24 24">
+                                    <polygon points="5,3 19,12 5,21" />
+                                </svg></div>
+                            <div class="card-title">Dubai's <span class="hl">Best Kept</span><br>Secrets Revealed</div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <img src="https://picsum.photos/seed/mkt7/400/700" alt="" />
+                            <div class="play-btn"><svg viewBox="0 0 24 24">
+                                    <polygon points="5,3 19,12 5,21" />
+                                </svg></div>
+                            <div class="card-title">Street Markets<br>of <span class="hl">Asia</span></div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <img src="https://picsum.photos/seed/str8/400/700" alt="" />
+                            <div class="play-btn"><svg viewBox="0 0 24 24">
+                                    <polygon points="5,3 19,12 5,21" />
+                                </svg></div>
+                            <div class="card-title">The Rise of<br><span class="hl">Indian Startups</span></div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <img src="https://picsum.photos/seed/fas9/400/700" alt="" />
+                            <div class="play-btn"><svg viewBox="0 0 24 24">
+                                    <polygon points="5,3 19,12 5,21" />
+                                </svg></div>
+                            <div class="card-title">Inside <span class="hl">Fashion Week</span><br>Mumbai 2024</div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <img src="https://picsum.photos/seed/him10/400/700" alt="" />
+                            <div class="play-btn"><svg viewBox="0 0 24 24">
+                                    <polygon points="5,3 19,12 5,21" />
+                                </svg></div>
+                            <div class="card-title">Extreme <span class="hl">Adventure</span><br>Across Himalayas</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        (function () {
+            const GAP = 4;   // desired VISUAL gap between ALL cards (px)
+            const SCALE = { active: 1, mid: 0.94, outer: 0.88 };
+            const OPACITY = { active: 1, mid: 1, outer: 1 };
+
+            function getCardWidth() {
+                const vw = window.innerWidth-400;
+                const count = vw <= 768 ? 3 : 5;
+                return Math.floor((vw - GAP * (count - 1)) / count);
+            }
+
+            /*
+             * KEY FIX — compute spaceBetween so that the VISUAL gap stays constant.
+             *
+             * When a card is scaled by `s`, it shrinks by cardWidth * (1 - s) total,
+             * meaning cardWidth * (1 - s) / 2 is "eaten" from each side.
+             *
+             * Between the active (scale=1) and mid (scale=0.96) cards:
+             *   visual_gap = spaceBetween - cardWidth*(1-0.96)/2
+             *              = spaceBetween - cardWidth*0.02
+             *   → spaceBetween = GAP + cardWidth*0.02
+             *
+             * Between the mid (0.96) and outer (0.92) cards:
+             *   visual_gap = spaceBetween - cardWidth*(1-0.96)/2 - cardWidth*(1-0.92)/2
+             *              = spaceBetween - cardWidth*0.02 - cardWidth*0.04
+             *              = spaceBetween - cardWidth*0.06
+             *
+             * We want BOTH visual gaps to equal GAP.
+             * The worst case (largest DOM gap consumed) is the outer pair.
+             * Use the average shrink between neighbors for a single spaceBetween value:
+             *   For active↔mid:   shrink = cardWidth * (0 + 0.04) / 2  = cardWidth * 0.02
+             *   For mid↔outer:    shrink = cardWidth * (0.04 + 0.08)/2 = cardWidth * 0.06
+             *
+             * We set spaceBetween = GAP + cardWidth * 0.06 so the outer gap is correct,
+             * which makes the active↔mid gap only very slightly tighter — imperceptible.
+             */
+            function getSpaceBetween(cardWidth) {
+                return Math.round(GAP + cardWidth * 0.06);
+            }
+
+            function applyWidths() {
+                const w = getCardWidth();
+                document.querySelectorAll('.swiper-slide').forEach(s => {
+                    s.style.width = w + 'px';
+                });
+            }
+
+            applyWidths();
+
+            function animateScales(swiper) {
+                swiper.slides.forEach(slide => {
+                    const idx = parseInt(slide.dataset.swiperSlideIndex ?? slide.dataset.index ?? 0);
+                    const dist = Math.abs(idx - swiper.realIndex);
+
+                    let scale, opacity, zIndex;
+                    if (dist === 0) {
+                        scale = SCALE.active; opacity = OPACITY.active; zIndex = 10;
+                    } else if (dist === 1) {
+                        scale = SCALE.mid; opacity = OPACITY.mid; zIndex = 5;
+                    } else {
+                        scale = SCALE.outer; opacity = OPACITY.outer; zIndex = 1;
+                    }
+
+                    slide.style.zIndex = zIndex;
+
+                    gsap.to(slide, {
+                        scale,
+                        opacity,
+                        duration: 0.65,
+                        ease: 'power3.out',
+                        overwrite: true,
+                    });
+                });
+            }
+
+            const swiper = new Swiper('.mySwiper', {
+                slidesPerView: 'auto',
+                centeredSlides: true,
+                loop: true,
+                speed: 650,
+                grabCursor: true,
+                spaceBetween: getSpaceBetween(getCardWidth()),
+                touchRatio: 1,
+                touchAngle: 45,
+                threshold: 4,
+
+                autoplay: {
+                    delay: 2800,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true,
+                },
+
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+
+                on: {
+                    afterInit(sw) { animateScales(sw); },
+                    slideChange(sw) { animateScales(sw); },
+                },
+            });
+
+            let t;
+            window.addEventListener('resize', () => {
+                clearTimeout(t);
+                t = setTimeout(() => {
+                    applyWidths();
+                    swiper.params.spaceBetween = getSpaceBetween(getCardWidth());
+                    swiper.update();
+                    animateScales(swiper);
+                }, 100);
+            });
+
+        })();
+    </script>
+</body>
+
+</html>
